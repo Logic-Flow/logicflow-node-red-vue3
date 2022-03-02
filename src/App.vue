@@ -7,4 +7,3 @@ import FlowChart from './components/FlowChart.vue'
 <template>
   <FlowChart />
 </template>
-
