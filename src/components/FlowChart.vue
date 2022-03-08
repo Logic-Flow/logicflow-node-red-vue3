@@ -2,8 +2,9 @@
 import { ref } from 'vue'
 import LogicFlow from '@logicflow/core'
 import '@logicflow/core/dist/style/index.css'
+import NodeRedExtension from './node-red/index'
+import './node-red/style.css'
 import Palette from './Palette.vue'
-import FunctionNode from './nodes/FunctionNode'
 
 export default {
   setup() {
@@ -21,10 +22,11 @@ export default {
         config: {
           color: '#eeeeee'
         }
-      }
+      },
+      plugins: [
+        NodeRedExtension
+      ]
     })
-    console.log(FunctionNode)
-    this.lf.register(FunctionNode)
     this.lf.render({
       nodes: [
         {
@@ -32,17 +34,16 @@ export default {
           type: 'function-node',
           x: 350,
           y: 150,
-          properties: {
-            name: '1',
-            color: 'red',
-            forms: []
-          },
-          text: {
-            x: 365,
-            y: 152,
-            value: '开始节点'
-          }
-        }]
+          text: '开始节点啊啊撒'
+        },
+        {
+          id: 'id2',
+          type: 'switch-node',
+          x: 550,
+          y: 150,
+          text: 'switch'
+        }
+      ]
     })
   },
   methods: {
@@ -60,10 +61,10 @@ export default {
 
 <template>
   <div class="flow-chart">
-    <div ref="container" class="container"></div>
     <Palette class="flow-chart-palette">
       <button @click="setProperties">11</button>
     </Palette>
+    <div ref="container" class="container"></div>
   </div>
 </template>
 
@@ -76,6 +77,9 @@ export default {
   position: relative;
   width: 100%;
   height: 100%;
+}
+.flow-chart /deep/ .lf-red-node, .flow-chart /deep/ .lf-element-text {
+  cursor: move;
 }
 .flow-chart-palette {
   position: absolute;

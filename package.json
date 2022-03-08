@@ -8,7 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@logicflow/core": "^1.1.3",
+    "@logicflow/core": "^1.1.7",
     "element-plus": "^2.0.4",
     "vue": "^3.2.25"
   },
