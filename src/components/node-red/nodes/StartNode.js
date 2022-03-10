@@ -3,16 +3,21 @@ import BaseNode from "./BaseNode"
 
 class StartNode extends BaseNode.view {
   getIcon () {
+    const { model, graphModel } = this.props;
     const {
       width,
       height,
-    } = this.props.model;
+    } = model;
     return h('image', {
       width: 30,
       height: 30,
       x: - width / 2,
       y: - height / 2,
-      href: 'images/start.svg'
+      className: 'node-red-start',
+      href: 'images/start.svg',
+      onClick: () => {
+        graphModel.eventCenter.emit('node-red:start')
+      }
     })
   }
 }

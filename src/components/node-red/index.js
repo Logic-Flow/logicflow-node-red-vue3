@@ -3,6 +3,7 @@ import FunctionNode from "./nodes/FunctionNode";
 import SwitchNode from "./nodes/SwitchNode";
 import StartNode  from "./nodes/StartNode";
 import FetchNode from "./nodes/FetchNode";
+import DelayNode from "./nodes/DelayNode";
 import FlowLink from "./FlowLink";
 import Palette from './tools/Palette.vue';
 
@@ -14,6 +15,7 @@ class NodeRedExtension {
     lf.register(StartNode);
     lf.register(FetchNode);
     lf.register(FlowLink);
+    lf.register(DelayNode);
     lf.setDefaultEdgeType('flow-link');
     this.app = createApp(Palette, {
       lf
@@ -23,9 +25,7 @@ class NodeRedExtension {
     const node = document.createElement('div')
     node.className = 'node-red-palette'
     domOverlay.appendChild(node)
-    setTimeout(() => {
-      this.app.mount(node)
-    })
+    this.app.mount(node)
   }
 }
 

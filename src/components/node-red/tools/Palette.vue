@@ -61,6 +61,12 @@ const baseNodes = ref([
     text: 'switch',
     background: 'rgb(226, 217, 110)',
     icon: 'public/images/switch.svg'
+  },
+  {
+    type: 'delay-node',
+    text: 'delay',
+    background: 'rgb(230, 224, 248)',
+    icon: 'public/images/delay.svg'
   }
 ])
 
@@ -68,6 +74,9 @@ const baseNodes = ref([
 <style scoped>
 .demo-collapse {
   width: 150px;
+}
+.demo-collapse /deep/ .el-collapse-item__header {
+  text-indent: 20px;
 }
 .red-ui-palette-node {
   cursor: move;
