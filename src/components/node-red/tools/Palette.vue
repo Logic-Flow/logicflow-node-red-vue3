@@ -1,7 +1,7 @@
 <template>
   <div class="demo-collapse">
-    <el-collapse>
-      <el-collapse-item title="基础节点" name="1" >
+    <el-collapse v-model="activeNames">
+      <el-collapse-item title="基础节点" name="base" >
         <div
           class="red-ui-palette-node ui-draggable ui-draggable-handle"
           @mousedown="startDrag(item)"
@@ -32,6 +32,8 @@ const props = defineProps({
     required: true,
   }
 })
+
+const activeNames = ref(['base'])
 
 const startDrag = (item) => {
   const { lf } = props;

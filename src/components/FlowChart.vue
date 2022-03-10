@@ -18,10 +18,14 @@ export default {
       grid: {
         visible: true,
         type: 'mesh',
+        size: 10,
         config: {
           color: '#eeeeee'
         }
       },
+      adjustEdge: false,
+      hoverOutline: false,
+      edgeSelectedOutline: false,
       keyboard: {
         enabled: true,
       },
