@@ -20,7 +20,12 @@ class RedNodeModel extends RectNodeModel {
    */
   setAttributes() {
     if (this.text.value) {
-      this.width = 30 + getBytesLength(this.text.value) * 9;
+      let width = 30 + getBytesLength(this.text.value) * 9;
+      width = Math.ceil(width / 20) * 20;
+      if (width < 100) {
+        width = 100;
+      }
+      this.width = width;
     }
   }
   /**

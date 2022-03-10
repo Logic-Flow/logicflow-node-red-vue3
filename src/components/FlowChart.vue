@@ -4,7 +4,6 @@ import LogicFlow from '@logicflow/core'
 import '@logicflow/core/dist/style/index.css'
 import NodeRedExtension from './node-red/index'
 import './node-red/style.css'
-import Palette from './Palette.vue'
 
 export default {
   setup() {
@@ -23,6 +22,10 @@ export default {
           color: '#eeeeee'
         }
       },
+      keyboard: {
+        enabled: true,
+      },
+      // keyboard: true,
       plugins: [
         NodeRedExtension
       ]
@@ -30,40 +33,19 @@ export default {
     this.lf.render({
       nodes: [
         {
-          id: 'id1',
-          type: 'function-node',
-          x: 350,
-          y: 150,
-          text: '开始节点啊啊撒'
+          type: 'start-node',
+          x: 220,
+          y: 200,
+          text: '开始'
         },
-        {
-          id: 'id2',
-          type: 'switch-node',
-          x: 550,
-          y: 150,
-          text: 'switch'
-        }
       ]
     })
-  },
-  methods: {
-    setProperties () {
-      this.lf.setProperties('id1', {
-        color: 'green',
-      })
-    }
-  },
-  components: {
-    Palette
   }
 }
 </script>
 
 <template>
   <div class="flow-chart">
-    <Palette class="flow-chart-palette">
-      <button @click="setProperties">11</button>
-    </Palette>
     <div ref="container" class="container"></div>
   </div>
 </template>
