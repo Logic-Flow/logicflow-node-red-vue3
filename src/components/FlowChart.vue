@@ -85,6 +85,12 @@ export default {
           y: 300,
           text: 'function'
         },
+        {
+          id: 'node_8',
+          type: 'vue-html',
+          x: 400,
+          y: 100
+        }
       ],
       edges: [
         {
@@ -129,12 +135,17 @@ export default {
           type: 'flow-link',
           sourceNodeId: 'node_5',
           targetNodeId: 'node_7'
-        },
+        }
       ]
     })
     this.lf.on('node-red:start', () => {
       // todo: 让流程跑起来
       console.log('我要开始执行流程了')
+    })
+    this.lf.on('vue-node:click', (data ) => {
+      this.lf.setProperties(data.id, {
+        t: ++data.val
+      })
     })
   }
 }
