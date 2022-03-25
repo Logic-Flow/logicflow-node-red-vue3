@@ -23,7 +23,7 @@ export default {
           color: '#eeeeee'
         }
       },
-      adjustEdge: false,
+      // adjustEdge: false,
       hoverOutline: false,
       edgeSelectedOutline: false,
       keyboard: {
@@ -84,12 +84,6 @@ export default {
           x: 1020,
           y: 300,
           text: 'function'
-        },
-        {
-          id: 'node_8',
-          type: 'vue-html',
-          x: 400,
-          y: 100
         }
       ],
       edges: [

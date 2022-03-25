@@ -11,7 +11,7 @@ class RedNodeModel extends RectNodeModel {
     this.width = 100;
     this.height = 30;
     this.radius = 5;
-    this.text.editable = false;
+    // this.text.editable = false;
     this.text.x = this.x + 10;
     this.iconPosition = ''; // icon位置，left表示左边，'right'表示右边
   }
@@ -27,6 +27,10 @@ class RedNodeModel extends RectNodeModel {
       }
       this.width = width;
     }
+  }
+  updateText(val) {
+    super.updateText(val)
+    this.setAttributes();
   }
   /**
    * 重写节点样式
