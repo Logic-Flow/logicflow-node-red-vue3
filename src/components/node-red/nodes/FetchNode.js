@@ -18,10 +18,9 @@ class FetchNode extends BaseNode.view {
 }
 
 class FetchNodeModel extends BaseNode.model {
-  getNodeStyle() {
-    const style = super.getNodeStyle()
-    style.fill = 'rgb(231, 231, 174)';
-    return style
+  initNodeData (data) {
+    super.initNodeData(data)
+    this.defaultFill = 'rgb(231, 231, 174)'
   }
 }
 

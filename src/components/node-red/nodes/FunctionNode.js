@@ -18,10 +18,9 @@ class FunctionNode extends BaseNode.view {
 }
 
 class FunctionNodeModel extends BaseNode.model {
-  getNodeStyle() {
-    const style = super.getNodeStyle()
-    style.fill = 'rgb(253, 208, 162)';
-    return style
+  initNodeData (data) {
+    super.initNodeData(data)
+    this.defaultFill = 'rgb(253, 208, 162)'
   }
 }
 

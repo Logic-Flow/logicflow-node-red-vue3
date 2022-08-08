@@ -3,13 +3,16 @@ import { ref } from 'vue'
 import LogicFlow from '@logicflow/core'
 import '@logicflow/core/dist/style/index.css'
 import NodeRedExtension from './node-red/index'
-import './node-red/style.css'
+import Setting from './node-red/tools/Setting.vue'
 
+import './node-red/style.css'
 export default {
   setup() {
     const count = ref(0)
+    const currentNode = ref(null)
     return {
-      count
+      count,
+      currentNode
     }
   },
   mounted() {
@@ -42,6 +45,15 @@ export default {
           x: 220,
           y: 200,
           text: 'start'
+        },
+         {
+          id: 'node_123_1',
+          type: 'vue-html',
+          x: 720,
+          y: 700,
+          properties: {
+            t: 1
+          }
         },
         {
           id: 'node_2',
@@ -136,11 +148,24 @@ export default {
       // todo: 让流程跑起来
       console.log('我要开始执行流程了')
     })
-    this.lf.on('vue-node:click', (data ) => {
+    this.lf.on('vue-node:click', (data) => {
       this.lf.setProperties(data.id, {
         t: ++data.val
       })
     })
+    this.lf.on('node:click', ({ data }) => {
+      this.currentNode = data
+    })
+    this.lf.on('blank:click', ({ data }) => {
+      this.currentNode = null
+    })
+  },
+  methods: {
+    changeStyle (style) {
+      this.lf.setProperties(this.currentNode.id, {
+        style
+      })
+    }
   }
 }
 </script>
@@ -148,6 +173,7 @@ export default {
 <template>
   <div class="flow-chart">
     <div ref="container" class="container"></div>
+    <Setting v-if="currentNode" @changeStyle="changeStyle" :nodeData="currentNode" class="setting-panel"></Setting>
   </div>
 </template>
 
@@ -164,10 +190,18 @@ export default {
 .flow-chart /deep/ .lf-red-node, .flow-chart /deep/ .lf-element-text {
   cursor: move;
 }
+.flow-chart /deep/ svg {
+  display: block;
+}
 .flow-chart-palette {
   position: absolute;
   left: 0;
   top: 0;
   z-index: 1;
+}
+.setting-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 </style>

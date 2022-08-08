@@ -1,29 +1,32 @@
 import { HtmlNode, HtmlNodeModel } from "@logicflow/core";
-import { createApp } from 'vue';
+import { createApp, ref, h } from 'vue';
 import VueNode from './VueNode.vue';
 
 class VueHtmlNode extends HtmlNode {
   constructor (props) {
     super(props)
-    this.app = createApp(VueNode)
+    // const appRef = ref(null)
+    this.app = createApp({
+      render: () => h(VueNode, {
+        // ref: appRef,
+        title: '312',
+        properties: props.model.getProperties(),
+        onBtnClick: (i) => {
+          console.log(44, i)
+          props.model.setProperties({
+            t: i++
+          })
+        }
+      })
+    })
   }
   setHtml(rootEl) {
     const node = document.createElement('div')
-    const { model, graphModel } = this.props;
-    const properties = model.getProperties();
+    // const { model, graphModel } = this.props;
+    // const properties = model.getProperties();
     rootEl.appendChild(node)
-    if (!this.isMounted) {
-      this.app.mount(node)
-      this.app._instance.emitsOptions['btn:click'] = (val) => {
-        graphModel.eventCenter.emit('vue-node:click', {
-          id: model.id,
-          val
-        })
-      }
-      this.isMounted = true
-    } else {
-      this.app._instance.props.properties = properties
-    }
+    this.app.mount(node)
+    console.log(34)
   }
 }
 

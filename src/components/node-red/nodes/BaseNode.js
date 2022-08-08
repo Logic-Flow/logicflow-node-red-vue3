@@ -14,6 +14,7 @@ class RedNodeModel extends RectNodeModel {
     // this.text.editable = false;
     this.text.x = this.x + 10;
     this.iconPosition = ''; // icon位置，left表示左边，'right'表示右边
+    this.defaultFill = '#a6bbcf';
   }
   /**
    * 动态设置初始化数据
@@ -37,14 +38,15 @@ class RedNodeModel extends RectNodeModel {
    */
   getNodeStyle() {
     const style = super.getNodeStyle();
-    style.fill = '#a6bbcf';
+    const dataStyle = this.properties.style || {};
     if (this.isSelected) {
-      style.strokeWidth = 2;
-      style.stroke = '#ff7f0e';
+      style.strokeWidth = Number(dataStyle.borderWidth) || 2;
+      style.stroke = dataStyle.borderColor || '#ff7f0e';
     } else {
-      style.strokeWidth = 1;
-      style.stroke = '#999';
+      style.strokeWidth = Number(dataStyle.borderWidth) || 1;
+      style.stroke = dataStyle.borderColor || '#999';
     }
+    style.fill = dataStyle.backgroundColor || this.defaultFill;
     return style;
   }
   /**

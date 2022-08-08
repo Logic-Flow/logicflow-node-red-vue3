@@ -18,10 +18,9 @@ class DelayNode extends BaseNode.view {
 }
 
 class DelayNodeModel extends BaseNode.model {
-  getNodeStyle() {
-    const style = super.getNodeStyle()
-    style.fill = 'rgb(230, 224, 248)';
-    return style
+  initNodeData (data) {
+    super.initNodeData(data)
+    this.defaultFill = 'rgb(230, 224, 248)'
   }
 }
 

@@ -18,10 +18,9 @@ class SwitchNode extends BaseNode.view {
 }
 
 class SwitchNodeModel extends BaseNode.model {
-  getNodeStyle() {
-    const style = super.getNodeStyle()
-    style.fill = 'rgb(226, 217, 110)';
-    return style
+  initNodeData (data) {
+    super.initNodeData(data)
+    this.defaultFill = 'rgb(226, 217, 110)'
   }
 }
 

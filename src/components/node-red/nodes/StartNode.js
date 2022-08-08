@@ -38,10 +38,9 @@ class StartNodeModel extends BaseNode.model {
     ];
     return anchors;
   }
-  getNodeStyle() {
-    const style = super.getNodeStyle()
-    style.fill = 'rgb(166, 187, 207)';
-    return style
+  initNodeData (data) {
+    super.initNodeData(data)
+    this.defaultFill = 'rgb(166, 187, 207)'
   }
 }
 

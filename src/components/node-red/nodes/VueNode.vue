@@ -1,6 +1,6 @@
 <template>
   <div class="demo-collapse">
-    <el-button @click="$emit('btn:click', properties.t)">vue_html_node: click_me_{{properties.t}}</el-button>
+    <el-button @click="$emit('btnClick', properties.t)">click_me_{{properties.t}}</el-button>
   </div>
 </template>
 
@@ -13,8 +13,17 @@ export default {
         t: 1
       })
     },
+    title: String,
   },
-  emits: ['btn:click']
+  emits: ['btnClick'],
+  mounted () {
+    console.log(this)
+  },
+  methods: {
+    update(properties) {
+      console.log(444, properties)
+    }
+  }
 }
 </script>
 <style scoped>
