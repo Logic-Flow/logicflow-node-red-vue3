@@ -13,11 +13,8 @@ class VueHtmlNode extends HtmlNode {
         this.r.component.props.text = String(Number(this.r.component.props.text) + Number(i))
       }
     })
-    this.d = h('div', null, [
-      this.r
-    ])
     this.app = createApp({
-      render: () => this.d
+      render: () => this.r
     })
   }
   setHtml(rootEl) {
