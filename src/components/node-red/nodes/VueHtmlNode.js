@@ -5,36 +5,42 @@ import VueNode from './VueNode.vue';
 class VueHtmlNode extends HtmlNode {
   constructor (props) {
     super(props)
-    // const appRef = ref(null)
+    this.isMounted = false
+    this.r = h(VueNode, {
+      properties: props.model.getProperties(),
+      text: props.model.inputData,
+      onBtnClick: (i) => {
+        this.r.component.props.text = String(Number(this.r.component.props.text) + Number(i))
+      }
+    })
+    this.d = h('div', null, [
+      this.r
+    ])
     this.app = createApp({
-      render: () => h(VueNode, {
-        // ref: appRef,
-        title: '312',
-        properties: props.model.getProperties(),
-        onBtnClick: (i) => {
-          console.log(44, i)
-          props.model.setProperties({
-            t: i++
-          })
-        }
-      })
+      render: () => this.d
     })
   }
   setHtml(rootEl) {
-    const node = document.createElement('div')
-    // const { model, graphModel } = this.props;
-    // const properties = model.getProperties();
-    rootEl.appendChild(node)
-    this.app.mount(node)
-    console.log(34)
+    if (!this.isMounted) {
+      this.isMounted = true
+      const node = document.createElement('div')
+      rootEl.appendChild(node)
+      this.app.mount(node)
+    } else {
+      this.r.component.props.properties = this.props.model.getProperties()
+    }
+  }
+  getText () {
+    return null
   }
 }
 
 class VueHtmlNodeModel extends HtmlNodeModel {
   setAttributes() {
     this.width = 300;
-    this.height = 32;
+    this.height = 100;
     this.text.editable = false;
+    this.inputData = this.text.value
   }
   getOutlineStyle() {
     const style = super.getOutlineStyle();
@@ -44,6 +50,11 @@ class VueHtmlNodeModel extends HtmlNodeModel {
   }
   getDefaultAnchor() {
     return []
+  }
+  getData () {
+    const data = super.getData()
+    data.text.value = this.inputData
+    return data
   }
 }
 

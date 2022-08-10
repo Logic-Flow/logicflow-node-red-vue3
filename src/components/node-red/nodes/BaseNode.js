@@ -16,6 +16,11 @@ class RedNodeModel extends RectNodeModel {
     this.iconPosition = ''; // icon位置，left表示左边，'right'表示右边
     this.defaultFill = '#a6bbcf';
   }
+  getData () {
+    const data = super.getData()
+    data.properties.ui = 'node-red'
+    return data
+  }
   /**
    * 动态设置初始化数据
    */

@@ -50,9 +50,10 @@ export default {
           id: 'node_123_1',
           type: 'vue-html',
           x: 720,
-          y: 700,
+          y: 400,
+          text: '2',
           properties: {
-            t: 1
+            t: 3
           }
         },
         {
