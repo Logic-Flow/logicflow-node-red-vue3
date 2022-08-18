@@ -6,6 +6,12 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  // 在codesandbox中需要用443来保证开发时不会重复刷新
+  // server: {
+  //   hmr: {
+  //     port: 443
+  //   }
+  // },
   plugins: [
     vue(),
     AutoImport({
